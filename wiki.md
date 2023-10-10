@@ -5,30 +5,39 @@
 ### 1. Install `ChatDev`:
 
 - **Clone the GitHub Repository:** Begin by cloning the repository using the command:
-   ```
+
+   ```bash
    git clone https://github.com/OpenBMB/ChatDev.git
    ```
+
 - **Set Up Python Environment:** Ensure you have a Python environment of version 3.9 or higher. You can create and
   activate this environment using the following commands, replacing `ChatDev_conda_env` with your preferred environment
   name:
+
    ```
    conda create -n ChatDev_conda_env python=3.9 -y
    conda activate ChatDev_conda_env
    ```
+
 - **Install Dependencies:** Move into the `ChatDev` directory and install the necessary dependencies by running:
+   
    ```
    cd ChatDev
    pip3 install -r requirements.txt
    ```
+
 - **Set OpenAI API Key:** Export your OpenAI API key as an environment variable. Replace `"your_OpenAI_API_key"` with
   your actual API key. Remember that this environment variable is session-specific, so you'll need to set it again if
   you open a new terminal session.
   On Unix/Linux:
-   ```
+
+   ```bash
    export OPENAI_API_KEY="your_OpenAI_API_key"
    ```
+
   On Windows:
-   ```
+
+   ```cmd
    $env:OPENAI_API_KEY="your_OpenAI_API_key"
    ```
 
@@ -37,7 +46,8 @@
 - **Build Your Software:** Use the following command to initiate the building of your software,
   replacing `[description_of_your_idea]` with your idea's description and `[project_name]` with your desired project
   name:
-   ```
+
+   ```python
    python3 run.py --task "[description_of_your_idea]" --name "[project_name]"
    ```
 
@@ -60,12 +70,14 @@
 ### 3. Check your software
 
 - the generated software is under ``WareHouse/NAME_ORG_timestamp``, including:
+
     - all the files and manuals of this software
     - config files of company which made this software, including three config json files
     - full log of the software building process
     - prompt to make this software
 - A case of todo software is just like below, which is located in ``/WareHouse/todo_THUNLP_20230822165503``
-    ```
+    
+    ```shell
     .
     ├── 20230822165503.log # log file
     ├── ChatChainConfig.json # Configuration
@@ -79,7 +91,9 @@
     ├── task.py # Generated Software Files
     └── requirements.txt # Generated Software Files
     ```
+
 - Usually you just need to install requirements and run main.py to use your software
+    
     ```commandline
     cd WareHouse/project_name_DefaultOrganization_timestamp
     pip3 install -r requirements.txt
@@ -91,7 +105,7 @@
 - you can start a flask app fist get a local demo, including enhanced visualized logs, replay demo, and a simple
   ChatChain Visualizer.
 
-```
+```bash
 python3 online_log/app.py
 ```
 

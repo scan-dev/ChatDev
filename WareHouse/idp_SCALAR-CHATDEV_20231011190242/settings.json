@@ -1,0 +1,7 @@
+{
+  "gitlab_url": "https://gitlab.example.com",
+  "default_variables": {
+    "variable1": "value1",
+    "variable2": "value2"
+  }
+}

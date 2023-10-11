@@ -1,5 +1,6 @@
 #!/bin/bash
 export | grep OPENAI
+eval "$(conda shell.bash hook)"
 clear
 
 # SET NAME of CHATDEV-APP
@@ -33,25 +34,26 @@ echo "==================="
 read -p "Select option : " ask
 case $ask in
 	[1] )
+        # BUILD APP
         clear;
-        echo 1. we will proceed;;
-        echo "=== BUILD SOLUTION =="
-
+        echo "=== BUILD SOLUTION ==";
+        conda create -n  $chatapp python==3.9 -y;
+        conda activate $chatapp;
+        pip install -r requirements.txt;
 
         #DISABLED FOR TESTING NEXT STEPS
-        pip install -r requirements.txt
-
         #Berlin Clock
         # Berlin clock app
         #python run.py --org $chatorg --name $chatapp --task "Create an clock app that displays the time and set an time alarm and plays a sound when the alarm is triggered. show documentation on how to use it and be able to run this app as a docker container."
 
         # IDP
-        python run.py --org $chatorg --name $chatapp --task "an idp api app with frontend web-page manages a gitlab environment where a developer can approve or block users. create users groups and projects and assign or remove users and groups to a project. also it set some default variables for gitlab and projects based on a settings.json file"
+        python run.py --org $chatorg --name $chatapp --task "an idp api app with frontend web-page manages a gitlab environment where a developer can approve or block users. create users groups and projects and assign or remove users and groups to a project. also it set some default variables for gitlab and projects based on a settings.json file";
 
-        echo ""
-        echo "=== END BUILD ==="
+        echo "";
+        echo "=== END BUILD ===";;
 
 	[2] )
+        # REVIEW BUILT APP
         clear;
         echo "=== VIEW REVIEW APP ===";
         #DISABLED FOR TESTING NEXT STEPS
@@ -60,32 +62,34 @@ case $ask in
         echo "=== END REVIEW ===";;
 
     [3] )
+        # RUN BUILT APP
         clear;
         echo "=== RUN APP ===";
         appPath=$(pwd);
         cd $(ls -d $appPath/WareHouse/$chatapp'_'$chatorg'_'* | fzf --header "Select");
-        conda create -n  $chatapp python==3.9 -y;
-        eval "$(conda shell.bash hook)";
         conda activate $chatapp;
         conda info | grep "active environment" | cut -d ":" -f 2;
-        #pip install -r requirements.txt;
+        pip install -r ../../requirements.txt;
         python main.py;
 
         read -p "--> continue RUN" ask;
         conda deactivate;
         conda remove -n $chatapp --all --yes;
+        cd $appPath;
         echo "=== END RUN ===";;
 	[aA] )
+        # Activate conda environment
         clear;
-        eval "$(conda shell.bash hook)";
         conda activate $(conda env list | cut -d " " -f 1 | fzf --header "Select");;
 
 	[dD] )
+        # deactivate conda environment
         clear;
 		conda deactivate;
         conda info | grep "active environment" | cut -d ":" -f 2;;
 
     [vV] )
+        # Display version info
         clear;
         export | grep conda;
 		conda -V;
@@ -94,6 +98,7 @@ case $ask in
         pip --version;
         read -t 5 -n 1;;
     [qQxX] )
+        # Exit/Quit runner
         clear;
 		exit;;
 
@@ -101,10 +106,5 @@ case $ask in
         clear;;
 esac
 done
-exit
-
-echo ""
-read -p "--> continue to BUILD" ask
-
 
 echo DONE!

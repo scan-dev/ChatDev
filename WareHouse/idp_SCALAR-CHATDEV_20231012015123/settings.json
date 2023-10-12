@@ -1,0 +1,8 @@
+{
+  "gitlab_url": "https://gitlab.transics-cicd-dev.aws.zf.com",
+  "gitlab_token": "glpat-xqArEyT5cTt9VvHc7mXw",
+  "default_variables": {
+    "variable1": "value1",
+    "variable2": "value2"
+  }
+}

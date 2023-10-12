@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IDP API App - Groups</title>
+</head>
+<body>
+    <h1>IDP API App - Groups</h1>
+    <form action="/groups" method="POST">
+        <label for="group_name">Group Name:</label>
+        <input type="text" id="group_name" name="group_name">
+        <button type="submit" name="action" value="create">Create</button>
+        <button type="submit" name="action" value="remove">Remove</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        {% for group in groups %}
+        <tr>
+            <td>{{ group.id }}</td>
+            <td>{{ group.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

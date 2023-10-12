@@ -1,0 +1,1 @@
+an idp api app with frontend web-page manages a gitlab environment where a developer can approve or block users. create users groups and projects and assign or remove users and groups to a project. also it set some default variables for gitlab and projects based on a settings.json file
